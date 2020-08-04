@@ -1,0 +1,164 @@
+31m left
+ALL
+1
+2
+3
+2. NodeJS: Directory Listing
+Your company has to create a command-line tool for interacting with File System using NodeJS. As the NodeJS developer in your company, you have been asked to write a subscript that takes in the Path to a file/directory as input and returns the file tree contained in the directory along with some meta-information about its contents.
+
+ 
+
+The script should implement the following functionality:
+
+ 
+
+Read the file/folder path:  The main function takes the fully resolved 'path' as an argument and returns a Promise which resolves with a JSON containing the metadata information about the files contained in it. If the path does not exist in the File System, the function should reject with an Error object with the message 'Invalid Path'.
+
+If the passed path is a file, the function should resolve with the array with a single object containing the metadata of the file in the format specified below
+
+If the passed path is a directory, the function should read the directory and add the details of all the files contained inside in a JSON list which should then be resolved once all the files and parsed. The resulting array should be sorted by the filename. Note that you have to traverse and fetch details only for the immediate children of the directory passed i.e fetch details of files only 1 level deep. 
+
+If the passed path does not exist in the File System, the function should reject with an Error object with the String message 'Invalid Path'.   
+
+Note: A test directory file test_dir containing a set of files is present in the project directory for testing.
+
+ 
+
+Test Requirements
+
+ 
+
+main - The function takes a single argument path and returns a Promise that resolves with the following information about the files
+[
+    {
+      "fileName" : "test.txt", //name of the file
+      "filePath" : "/test_dir/test.txt", //path to the file relative to the root of the project
+      "size" : 1472, //size of the file in bytes
+      "createdAt" : "2020-03-01" // date when the file was created in the format YYYY-MM-DD. The date should be normalized to UTC.
+      "isDirectory" : false // whether the path is a directory (Boolean)
+    },
+    ....
+
+]
+fileName - The name of the file including the extension
+filePath - The path to the file relative to the root of the project.
+size - The size of the file in bytes
+createdAt - The date on which the file was created in the format YYYY-MM-DD. The date should only be parsed in the UTC timezone.
+isDirectory - whether the specified path is a directory (Boolean). True if it is a directory, false otherwise.
+ 
+
+Examples :
+
+ 
+
+1. If the passed path is a file, return an array containing a single object which contains the metadata of the file.
+
+ 
+
+[
+    {
+      "fileName" : "test.txt", //name of the file
+      "filePath" : "/test_dir/test.txt", //path to the file relative to the root of the project
+      "size" : 1472, //size of the file in bytes
+      "createdAt" : "2020-03-01" // date when the file was created in the format YYYY-MM-DD. The date should be normalized to UTC.
+      "isDirectory" : false
+
+    }
+]
+ 
+
+2. If the passed path is a directory, return an array containing the metadata of all the files sorted by filename contained in it. 
+
+ 
+
+Let's say the directory structure is
+
+- test_dir
+ -- test.txt
+ -- bla.tx
+ -- xyz.json
+ -- logs
+ 
+
+[
+    {
+      "fileName" : "bla.txt", 
+      "filePath" : "/test_dir/bla.txt", 
+      "size" : 1472, 
+      "isDirectory" : false,
+      "createdAt" : "2020-01-31" 
+    },
+    {
+      "fileName" : "logs", 
+      "filePath" : "/test_dir/logs",
+      "size" : 12323, 
+      "isDirectory" : true,
+      "createdAt" : "2020-03-01" 
+    }
+    {
+      "fileName" : "test.txt", 
+      "filePath" : "/test_dir/test.txt",
+      "size" : 218, 
+      "isDirectory" : false,
+      "createdAt" : "2020-03-01" 
+    },
+    {
+      "fileName" : "xyz.json", 
+      "filePath" : "/test_dir/xyz.json",
+      "size" : 1568, 
+      "isDirectory" : false,
+      "createdAt" : "2020-03-01" 
+    }
+  
+    
+]
+ 
+
+3. If the passed path does not exist, reject with an Error object with the String 'Invalid Path' as the message.
+
+ 
+
+Invalid Path
+ 
+
+Software Instructions
+The question(s) requires Node 8 LTS or above.
+
+https://nodejs.org/en/download/
+Git Instructions
+Use the following commands to work with this project
+
+Run
+Copy
+
+npm start
+
+Test
+Copy
+
+npm test
+
+Install
+Copy
+
+npm install
+
+Alternatively, use online IDE (beta)
+|
+
+ Instructions
+Step 1: Clone git repository
+https://git-rba.hackerrank.com/git/116b4e2a-921b-4b52-8129-935cc59b9606
+
+Click to copy Git URL
+Step 2: View your latest submission from local here
+Last Updated at 12 Jul 2020, 11:49:00 PM |
+Refresh View
+
+
+Test Results
+Help
+
+Run Tests
+
+Submit Code
